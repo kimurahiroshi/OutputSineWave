@@ -42,9 +42,9 @@ public class SineWaveSample extends InputStream {
 			buffer = ByteBuffer.allocate(2);
 			buffer.putShort(value);
 			buffer.order(ByteOrder.LITTLE_ENDIAN);
-			byte[] array = buffer.array();
-			list.add(array[0]);
-			list.add(array[1]);
+			buffer.flip();
+			list.add(buffer.get());
+			list.add(buffer.get());
 		}
 		int ret = Byte.toUnsignedInt(list.remove(0));
 		return ret;
